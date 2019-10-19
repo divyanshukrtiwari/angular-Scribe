@@ -1,0 +1,49 @@
+<div class="container">
+  <img [src]="logo" [height]="height" [width]="width">
+  <p>
+  <a 
+  [href]="google" 
+  class="btn btn-primary"
+  *ngIf= "showBtn()"
+  >Google</a>
+ 
+  <button class="btn btn-success"  (click)="toogleGoogleButton()">Disabled</button>
+  </p>
+  <p>
+    {{height + ' ' +google+' '}}
+  </p>
+  <p>
+    <b>{{variable}}</b>
+  </p>
+  <p>
+    <input type="text" class="form-control" placeholder="your name here" (keydown)="log($event)">
+  </p>
+</div>
+<div class="container">
+  <input type="text" class="form-control" placeholder="your name here" [(ngModel)]="name" >
+  <h2>{{ name }}</h2>
+</div>
+<hr class="bg-dark">
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let x of fruits; let i = index">{{ i +1}}.{{ x }}</li>
+  </ul>
+  <hr class="bg-dark">
+  <ul class="list-group">
+    <li class="list-group-item"
+    *ngFor="let p of people"  [ngSwitch]="p.country">
+      <div class="text-primary" *ngSwitchCase="'AU'" >{{ p.name }}-{{ p.country }}</div>
+      <div class="text-danger" *ngSwitchCase="'IND'" >{{ p.name }}-{{ p.country }}</div>
+      <div class="text-warning" *ngSwitchCase="'US'" >{{ p.name }}-{{ p.country }}</div>
+      <div class="text-dark" *ngSwitchDefault >{{ p.name }}-{{ p.country }}</div>
+    </li>
+  </ul>
+</div>
+<hr class="bg-dark">
+<div class="container">
+  <ul class="list-group">
+    <app-person class="list-group-item"
+    *ngFor="let x of people" [person]="x" (personClicked)="onPersonClicked()" >
+    </app-person>
+  </ul>
+</div>
